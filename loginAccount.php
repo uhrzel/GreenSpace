@@ -2,28 +2,35 @@
 session_start();
 include("db.php");
 
-if(isset($_POST['user_email']) && isset($_POST['password'])){
-    // Perform your login logic here
-    $user_email = mysqli_real_escape_string($con, $_POST['user_email']);
+if (isset($_POST['email_or_username']) && isset($_POST['password'])) {
+    // User login logic
+    $email_or_username = mysqli_real_escape_string($con, $_POST['email_or_username']);
     $password = mysqli_real_escape_string($con, $_POST['password']);
 
-    // Example query (you should use prepared statements or a secure authentication method)
-    $query = "SELECT * FROM user WHERE (user_email='$user_email' OR user_name='$user_email') AND password='$password'";
+    // Check if the email_or_username exists in either user_email or user_name field
+    $query = "SELECT * FROM user WHERE (user_email='$email_or_username' OR user_name='$email_or_username') AND password='$password'";
 
     $result = mysqli_query($con, $query);
 
-    if(mysqli_num_rows($result) > 0){
+    if (mysqli_num_rows($result) > 0) {
         $row = mysqli_fetch_assoc($result);
-        if($row['status'] == 'Suspended'){
+        if ($row['status'] == 'Suspended') {
             echo "Your account is suspended temporarily. Please contact us for assistance.";
         } else {
-            // User authenticated
-            $_SESSION['user_email'] = $user_email; // Set session variable
-            echo "Login successfully";
+            $_SESSION['user_email'] = $row['user_email']; // Set session variable
+            echo "User login successful";
         }
     } else {
-        // User not found or credentials incorrect
-        echo "Incorrect username or password. Please try again.";
+        // Admin login logic
+        $query = "SELECT id FROM admin_account WHERE username='$email_or_username' AND password='$password'";
+
+        $result = mysqli_query($con, $query);
+
+        if (mysqli_num_rows($result) > 0) {
+            $_SESSION["adminloggedin"] = true;
+            echo "Admin login successful";
+        } else {
+            echo "Incorrect email/username or password. Please try again.";
+        }
     }
 }
-?>

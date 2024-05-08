@@ -33,9 +33,7 @@ if (isset($_SESSION['user_email'])) {
     <link rel="stylesheet" href="assets/css/animated-headline.css">
     <link rel="stylesheet" href="assets/css/magnific-popup.css">
     <link rel="stylesheet" href="assets/css/fontawesome-all.min.css">
-    <link
-        href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
-        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="assets/css/themify-icons.css">
     <link rel="stylesheet" href="assets/css/slick.css">
     <link rel="stylesheet" href="assets/css/nice-select.css">
@@ -108,7 +106,7 @@ if (isset($_SESSION['user_email'])) {
                                     </div>
                                     <!-- Header-btn -->
                                     <div class="header-right-btn d-none d-lg-block ml-20">
-                                    <a href="eventcalendar" class="btn header-btn">Join Events</a>
+                                        <a href="eventcalendar" class="btn header-btn">Join Events</a>
                                     </div>
                                 </div>
                             </div>
@@ -139,8 +137,7 @@ if (isset($_SESSION['user_email'])) {
                                         Deforestation kills 15 billion trees each year.<br> Stop deforestation. </P>
                                     <!-- Hero-btn -->
                                     <div class="hero__btn">
-                                        <a href="eventcalendar" class="hero-btn mb-10" data-animation="fadeInUp"
-                                            data-delay=".8s">Join Us Now</a>
+                                        <a href="eventcalendar" class="hero-btn mb-10" data-animation="fadeInUp" data-delay=".8s">Join Us Now</a>
                                     </div>
                                 </div>
                             </div>
@@ -160,8 +157,7 @@ if (isset($_SESSION['user_email'])) {
                                         global warming. </P>
                                     <!-- Hero-btn -->
                                     <div class="hero__btn">
-                                        <a href="eventcalendar" class="hero-btn mb-10" data-animation="fadeInUp"
-                                            data-delay=".8s">Join Us Now</a>
+                                        <a href="eventcalendar" class="hero-btn mb-10" data-animation="fadeInUp" data-delay=".8s">Join Us Now</a>
                                     </div>
                                 </div>
                             </div>
@@ -181,8 +177,7 @@ if (isset($_SESSION['user_email'])) {
                                         80.<br> </P>
                                     <!-- Hero-btn -->
                                     <div class="hero__btn">
-                                        <a href="eventcalendar" class="hero-btn mb-10" data-animation="fadeInUp"
-                                            data-delay=".8s">Join Us Now</a>
+                                        <a href="eventcalendar" class="hero-btn mb-10" data-animation="fadeInUp" data-delay=".8s">Join Us Now</a>
                                     </div>
                                 </div>
                             </div>
@@ -194,8 +189,7 @@ if (isset($_SESSION['user_email'])) {
             <div class="video-area d-flex align-items-center justify-content-center">
                 <div class="video-wrap position-relative">
                     <div class="video-icon">
-                        <a class="popup-video btn-icon" href="https://www.youtube.com/watch?v=7nUnGhwR6jM"><i
-                                class="fas fa-play"></i></a>
+                        <a class="popup-video btn-icon" href="https://www.youtube.com/watch?v=7nUnGhwR6jM"><i class="fas fa-play"></i></a>
                     </div>
                 </div>
             </div>
@@ -401,11 +395,10 @@ We collaborate with diverse stakeholders, including local communities, governmen
                 </div>
             </div>
         </div>-->
-        <!-- Our Cases End -->
-        <!--? Blog Area Start -->
+
         <section class="home-blog-area pb-padding">
             <div class="container">
-                <!-- Section Tittle -->
+                <!-- Section Title -->
                 <div class="row justify-content-center">
                     <div class="col-xl-8 col-lg-9 col-md-11">
                         <div class="section-tittle text-center mb-90 mt-40">
@@ -415,139 +408,16 @@ We collaborate with diverse stakeholders, including local communities, governmen
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-xl-6 col-lg-6 col-md-6">
-                        <div class="home-blog-single mb-30">
-                            <div class="blog-img-cap">
-                                <div class="blog-img">
-                                    <img src="assets/img/newpics/volunteers.jpg" alt="">
-                                </div>
-                                <div class="blog-cap">
-                                    <h3><a href="#">Call for Volunteers: Join the Reforestation Movement</a>
-                                    </h3>
-                                    <p style="font-family: 'Poppins';">GreenSpace issues a call for volunteers to join
-                                        its reforestation movement and participate in upcoming tree planting events.
-                                        Volunteers of all ages and backgrounds are invited to contribute their time and
-                                        energy towards restoring forests and protecting the planet for future
-                                        generations.</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-xl-6 col-lg-6 col-md-6">
-                        <div class="home-blog-single mb-30">
-                            <div class="blog-img-cap">
-                                <div class="blog-img">
-                                    <img src="assets/img/newpics/newreforestationlaunch.jpg" alt="">
-                                </div>
-                                <div class="blog-cap">
-                                    <h3><a href="#">New Reforestation Project Launched in Iligan City</a>
-                                    </h3>
-                                    <p style="font-family: 'Poppins';">GreenSpace announces the launch of a new
-                                        reforestation project in Iligan City, aimed at restoring degraded ecosystems and
-                                        promoting biodiversity. The project will involve planting thousands of native
-                                        trees and engaging local communities in conservation efforts.</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-xl-6 col-lg-6 col-md-6">
-                        <div class="home-blog-single mb-30">
-                            <div class="blog-img-cap">
-                                <div class="blog-img">
-                                    <img src="assets/img/gallery/community-led.jpg" alt="">
-                                </div>
-                                <div class="blog-cap">
-                                    <h3><a href="#">Community-led Reforestation Project in Iligan City Shows
-                                            Promising Results</a></h3>
-                                    <p style="font-family: 'Poppins';">A community-driven reforestation initiative in
-                                        Iligan City is gaining traction,
-                                        with local residents actively participating in tree planting and conservation
-                                        efforts. The project aims to restore
-                                        degraded areas and protect watersheds crucial for the city's water supply.</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-xl-6 col-lg-6 col-md-6">
-                        <div class="home-blog-single mb-30">
-                            <div class="blog-img-cap">
-                                <div class="blog-img">
-                                    <img src="assets/img/gallery/partnership.jpg" alt="">
-                                </div>
-                                <div class="blog-cap">
-                                    <h3><a href="#">Partnership with NGOs Boosts Reforestation Efforts in
-                                            Iligan City</a></h3>
-                                    <p style="font-family: 'Poppins';">Iligan City has forged partnerships with
-                                        non-governmental organizations (NGOs)
-                                        to enhance reforestation efforts in the region. Through joint initiatives, such
-                                        as tree planting campaigns and habitat
-                                        restoration projects, significant progress is being made in replenishing forests
-                                        and biodiversity hotspots.</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-xl-6 col-lg-6 col-md-6">
-                        <div class="home-blog-single mb-30">
-                            <div class="blog-img-cap">
-                                <div class="blog-img">
-                                    <img src="assets/img/gallery/innovative.jpg" alt="">
-                                </div>
-                                <div class="blog-cap">
-                                    <h3><a href="#">Iligan City Implements Innovative Reforestation
-                                            Techniques</a></h3>
-                                    <p style="font-family: 'Poppins';"> In a bid to accelerate forest recovery, Iligan
-                                        City has adopted
-                                        innovative reforestation techniques such as aerial seeding and drone monitoring.
-                                        These modern approaches
-                                        aim to cover larger areas efficiently and ensure the survival of newly planted
-                                        trees through data-driven management.</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-xl-6 col-lg-6 col-md-6">
-                        <div class="home-blog-single mb-30">
-                            <div class="blog-img-cap">
-                                <div class="blog-img">
-                                    <img src="assets/img/gallery/funds.png" alt="">
-                                </div>
-                                <div class="blog-cap">
-                                    <h3><a href="#">Government Allocates Funds for Reforestation in Iligan
-                                            City</a></h3>
-                                    <p style="font-family: 'Poppins';"> The local government of Iligan City has
-                                        allocated substantial funds for
-                                        reforestation programs as part of its commitment to environmental
-                                        sustainability. The investment will support
-                                        tree planting activities, watershed protection, and the establishment of
-                                        nurseries to propagate native tree species.</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-xl-6 col-lg-6 col-md-6">
-                        <div class="home-blog-single mb-30">
-                            <div class="blog-img-cap">
-                                <div class="blog-img">
-                                    <img src="assets/img/gallery/schools.jpg" alt="">
-                                </div>
-                                <div class="blog-cap">
-                                    <h3><a href="#">Schools and Universities Join Reforestation Drive in
-                                            Iligan City</a></h3>
-                                    <p style="font-family: 'Poppins';"> Educational institutions in Iligan City are
-                                        actively participating in
-                                        reforestation efforts by integrating environmental conservation into their
-                                        curriculum. Students and faculty
-                                        members are engaged in tree planting activities, ecological research, and
-                                        awareness campaigns to promote
-                                        sustainable land management practices.</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    <!-- News Placeholder -->
+                    <!-- News items will be dynamically inserted here -->
+                    <?php
+                    // Include your PHP code to fetch and display news details here
+                    include './admin/fetch-news.php';
+                    ?>
                 </div>
             </div>
         </section>
+
         <!-- Blog Area End -->
 
     </main>
@@ -623,7 +493,9 @@ We collaborate with diverse stakeholders, including local communities, governmen
                 </div>
                 <div style="margin-bottom: 0px;height: 10px; background: transparent;text-align: center;color: white; margin-top: 80px">
                     <p style="color: white;font-family: 'Poppins', sans-serif;">Copyright &copy;
-                        <script>document.write(new Date().getFullYear());</script> All rights reserved by GreenSpace.
+                        <script>
+                            document.write(new Date().getFullYear());
+                        </script> All rights reserved by GreenSpace.
                     </p>
                 </div>
             </div>

@@ -1,4 +1,3 @@
-
 <?php
 session_start(); // Start session
 // Check if the user is not logged in, redirect to login page
@@ -9,6 +8,7 @@ if (isset($_SESSION['user_email'])) {
 ?>
 <!doctype html>
 <html class="no-js" lang="zxx">
+
 <head>
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
@@ -34,15 +34,24 @@ if (isset($_SESSION['user_email'])) {
     <link rel="stylesheet" href="assets/css/nice-select.css">
     <link rel="stylesheet" href="assets/css/style.css">
 
-        <style type="text/css">
+    <style type="text/css">
         @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
-             * { font-family: 'Poppins' }
 
-              body { font-family: 'Poppins' }
-               html { font-family: 'Poppins' }
+        * {
+            font-family: 'Poppins'
+        }
 
-               input { font-weight:normal; }
+        body {
+            font-family: 'Poppins'
+        }
 
+        html {
+            font-family: 'Poppins'
+        }
+
+        input {
+            font-weight: normal;
+        }
     </style>
 </head>
 
@@ -53,7 +62,7 @@ if (isset($_SESSION['user_email'])) {
             <div class="preloader-inner position-relative">
                 <div class="preloader-circle"></div>
                 <div class="preloader-img pere-text">
-                <img src="assets/img/logo/newlogo.jpg" alt="">
+                    <img src="assets/img/logo/newlogo.jpg" alt="">
                 </div>
             </div>
         </div>
@@ -77,7 +86,7 @@ if (isset($_SESSION['user_email'])) {
                                     <!-- Main-menu -->
                                     <div class="main-menu d-none d-lg-block">
                                         <nav>
-                                        <ul id="navigation">
+                                            <ul id="navigation">
                                                 <li><a href="index">Home</a></li>
                                                 <li><a href="about">About Us</a></li>
                                                 <li><a href="greenTips">GreenLiving Tips</a></li>
@@ -97,10 +106,10 @@ if (isset($_SESSION['user_email'])) {
                                     </div>
                                     <!-- Header-btn -->
                                     <div class="header-right-btn d-none d-lg-block ml-20">
-                                    <a href="eventcalendar" class="btn header-btn">Join Events</a>
+                                        <a href="eventcalendar" class="btn header-btn">Join Events</a>
                                     </div>
                                 </div>
-                            </div> 
+                            </div>
                             <!-- Mobile Menu -->
                             <div class="col-12">
                                 <div class="mobile_menu d-block d-lg-none"></div>
@@ -114,34 +123,35 @@ if (isset($_SESSION['user_email'])) {
     </header>
     <!-- Your HTML code for the login and registration forms -->
     <main>
-        <div class="form-modal"  style="border-bottom-left-radius: 0px; border-bottom-right-radius: 0px;">
+        <div class="form-modal" style="border-bottom-left-radius: 0px; border-bottom-right-radius: 0px;">
             <div class="form-toggle">
                 <button id="login-toggle" onclick="toggleLogin()">log in</button>
                 <button id="signup-toggle" onclick="toggleSignup()" style="color:black">sign up</button>
             </div>
-        
+
             <div id="login-form">
                 <form method="POST" id="formlogin" action="loginAccount.php">
-                    <input type="text" name="user_email" placeholder="Enter email or username" style="font-weight:normal; " />
+                    <input type="text" name="email_or_username" placeholder="Enter email or username" style="font-weight:normal; " />
                     <div style="position: relative;">
-                        <input type="password" name="password" id="login-password" placeholder="Enter password" style="font-weight:normal;"/>
+                        <input type="password" name="password" id="login-password" placeholder="Enter password" style="font-weight:normal;" />
                         <label for="showLoginPassword" style="position: absolute; right: 40px; top: 50%; transform: translateY(-50%);">
                             <input type="checkbox" id="showLoginPassword" style="display: none;">
                             <i class="fas fa-eye" id="showLoginIcon" style="cursor: pointer;"></i>
                         </label>
                     </div>
-                    <button type="submit" class="btn login" id="login-btn">login</button>
+                    <button type="submit" class="btn login" id="login-btn">Login</button>
                     <p style="text-align: center;"><a href="javascript:void(0)">Forgot Password?</a></p>
-                    <hr/>
+                    <hr />
                 </form>
             </div>
 
+
             <div id="signup-form">
-                <form method="POST"  id="formsignup" action="signup.php">
-                    <input type="email" name="user_email" placeholder="Enter your email"  style="font-weight:normal; "/>
-                    <input type="text" name="user_name" placeholder="Choose username"  style="font-weight:normal; "/>
+                <form method="POST" id="formsignup" action="signup.php">
+                    <input type="email" name="user_email" placeholder="Enter your email" style="font-weight:normal; " />
+                    <input type="text" name="user_name" placeholder="Choose username" style="font-weight:normal; " />
                     <div style="position: relative;">
-                        <input type="password" name="password" id="signup-password" placeholder="Create password" style="font-weight:normal;"/>
+                        <input type="password" name="password" id="signup-password" placeholder="Create password" style="font-weight:normal;" />
                         <label for="showSignupPassword" style="position: absolute; right: 40px; top: 50%; transform: translateY(-50%);">
                             <input type="checkbox" id="showSignupPassword" style="display: none;">
                             <i class="fas fa-eye" id="showSignupIcon" style="cursor: pointer;"></i>
@@ -149,92 +159,95 @@ if (isset($_SESSION['user_email'])) {
                     </div>
                     <button type="submit" class="btn signup" id="signup-btn">create account</button>
                     <p style="text-align: center;font-weight: normal;">Clicking <strong style="color: #57B846;">create account</strong> means that you agree to our <a href="javascript:void(0)" style="font-weight:bold;">terms of services</a>.</p>
-                    <hr/>
+                    <hr />
                 </form>
             </div>
         </div>
+
+
     </main>
- <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
 
     <script>
-// Function to handle form submission via AJAX
-function submitForm(formId, url, successCallback) {
-    var xhr = new XMLHttpRequest();
-    var formData = new FormData(document.getElementById(formId));
+        // Function to handle form submission via AJAX
+        function submitForm(formId, url, successCallback) {
+            var xhr = new XMLHttpRequest();
+            var formData = new FormData(document.getElementById(formId));
 
-    xhr.open('POST', url, true);
-    xhr.onreadystatechange = function() {
-        if (xhr.readyState == 4 && xhr.status == 200) {
-            successCallback(xhr.responseText);
-        }
-    };
-    xhr.send(formData);
-}
-
-// Function to handle login form submission
-document.getElementById("formlogin").addEventListener("submit", function(event) {
-    event.preventDefault();
-    submitForm("formlogin", "loginAccount.php", function(response) {
-        alert(response);
-
-          if(response == 'Login successfully'){
-            window.location.href='homepage';
-        }
-         // Display response in an alert
-        // Add your logic for successful login here
-    });
-});
-
-// Function to handle signup form submission
-document.getElementById("formsignup").addEventListener("submit", function(event) {
-    event.preventDefault();
-    submitForm("formsignup", "signup.php", function(response) {
-        alert(response);
-
-        if(response == 'Signup successfully'){
-            window.location.reload();
+            xhr.open('POST', url, true);
+            xhr.onreadystatechange = function() {
+                if (xhr.readyState == 4 && xhr.status == 200) {
+                    successCallback(xhr.responseText);
+                }
+            };
+            xhr.send(formData);
         }
 
-         // Display response in an alert
-        // Add your logic for successful signup here
-    });
-});
+        // Function to handle login form submission
+        document.getElementById("formlogin").addEventListener("submit", function(event) {
+            event.preventDefault();
+            submitForm("formlogin", "loginAccount.php", function(response) {
+                alert(response);
+                if (response === 'User login successful') {
+                    window.location.href = 'homepage';
+                } else if (response === 'Admin login successful') {
+                    window.location.href = 'admin';
+                }
+            });
 
-// Function to toggle password visibility
-function togglePasswordVisibility(inputId) {
-    var passwordInput = document.getElementById(inputId);
-    if (passwordInput.type === "password") {
-        passwordInput.type = "text";
-    } else {
-        passwordInput.type = "password";
-    }
-}
+        });
 
-// Event listeners for toggling password visibility in the login and signup forms
-document.getElementById("showLoginPassword").addEventListener("click", function() {
-    togglePasswordVisibility("login-password");
-});
 
-document.getElementById("showSignupPassword").addEventListener("click", function() {
-    togglePasswordVisibility("signup-password");
-});
 
-</script>
+        // Function to handle signup form submission
+        document.getElementById("formsignup").addEventListener("submit", function(event) {
+            event.preventDefault();
+            submitForm("formsignup", "signup.php", function(response) {
+                alert(response);
+
+                if (response == 'Signup successfully') {
+                    window.location.reload();
+                }
+
+                // Display response in an alert
+                // Add your logic for successful signup here
+            });
+        });
+
+        // Function to toggle password visibility
+        function togglePasswordVisibility(inputId) {
+            var passwordInput = document.getElementById(inputId);
+            if (passwordInput.type === "password") {
+                passwordInput.type = "text";
+            } else {
+                passwordInput.type = "password";
+            }
+        }
+
+        // Event listeners for toggling password visibility in the login and signup forms
+        document.getElementById("showLoginPassword").addEventListener("click", function() {
+            togglePasswordVisibility("login-password");
+        });
+
+        document.getElementById("showSignupPassword").addEventListener("click", function() {
+            togglePasswordVisibility("signup-password");
+        });
+    </script>
 
 
 
     <footer>
         <div class="footer-wrapper">
-           <!-- Footer Start-->
-           <div class="footer-area footer-padding">
-               <div class="container ">
-                   <div class="row justify-content-between">
-                       <div class="col-xl-4 col-lg-3 col-md-8 col-sm-8">
-                           <div class="single-footer-caption mb-50">
-                               <div class="single-footer-caption mb-30">
-                                   <!-- logo -->
-                                   <div class="footer-logo mb-20">
+            <!-- Footer Start-->
+            <div class="footer-area footer-padding">
+                <div class="container ">
+                    <div class="row justify-content-between">
+                        <div class="col-xl-4 col-lg-3 col-md-8 col-sm-8">
+                            <div class="single-footer-caption mb-50">
+                                <div class="single-footer-caption mb-30">
+                                    <!-- logo -->
+                                    <div class="footer-logo mb-20">
                                         <a href="index"><img src="assets/img/logo/newlogo.jpg" alt="" style="width: 100px; height: 100px; margin-left: 75px;"></a>
                                     </div>
                                     <div class="footer-tittle">
@@ -296,15 +309,17 @@ document.getElementById("showSignupPassword").addEventListener("click", function
                 </div>
                 <div style="margin-bottom: 0px;height: 10px; background: transparent;text-align: center;color: white; margin-top: 80px">
                     <p style="color: white;font-family: 'Poppins', sans-serif;">Copyright &copy;
-                        <script>document.write(new Date().getFullYear());</script> All rights reserved by GreenSpace.
+                        <script>
+                            document.write(new Date().getFullYear());
+                        </script> All rights reserved by GreenSpace.
                     </p>
                 </div>
             </div>
 
         </div>
     </footer>
-      <!-- Scroll Up -->
-      <div id="back-top" >
+    <!-- Scroll Up -->
+    <div id="back-top">
         <a title="Go to Top" href="#"> <i class="fas fa-level-up-alt"></i></a>
     </div>
 
@@ -333,7 +348,7 @@ document.getElementById("showSignupPassword").addEventListener("click", function
     <script src="./assets/js/jquery.sticky.js"></script>
     <!-- Progress -->
     <script src="./assets/js/jquery.barfiller.js"></script>
-    
+
     <!-- counter , waypoint,Hover Direction -->
     <script src="./assets/js/jquery.counterup.min.js"></script>
     <script src="./assets/js/waypoints.min.js"></script>
@@ -346,10 +361,11 @@ document.getElementById("showSignupPassword").addEventListener("click", function
     <script src="./assets/js/jquery.validate.min.js"></script>
     <script src="./assets/js/mail-script.js"></script>
     <script src="./assets/js/jquery.ajaxchimp.min.js"></script>
-    
-    <!-- Jquery Plugins, main Jquery -->	
+
+    <!-- Jquery Plugins, main Jquery -->
     <script src="./assets/js/plugins.js"></script>
     <script src="./assets/js/main.js"></script>
-    
+
 </body>
+
 </html>

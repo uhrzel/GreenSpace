@@ -860,8 +860,6 @@ if (!isset($_SESSION["adminloggedin"]) || $_SESSION["adminloggedin"] !== true) {
                                         <form method="POST" id="addevent" action="addnews.php" enctype='multipart/form-data'>
                                             <div style="display: flex;flex-wrap: wrap;width: 100%;">
 
-
-
                                                 <div class="feed-form">
                                                     <div style="display:flex;justify-content: space-between;">
                                                         <input style="width:49%" required type="date" id="dateInput">
@@ -876,8 +874,10 @@ if (!isset($_SESSION["adminloggedin"]) || $_SESSION["adminloggedin"] !== true) {
                                                     </div>
 
                                                     <input required placeholder="Title" type="text" name="title">
-                                                    <textarea required placeholder="Description" name="description" type="email"></textarea>
 
+                                                    <textarea required placeholder="Description" name="description" type="email"></textarea>
+                                                    <input required placeholder="img" type="file" name="image">
+                                                    
 
                                                     <button class="button_submit">Submit</button>
                                                 </div>
