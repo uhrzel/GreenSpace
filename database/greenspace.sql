@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 08, 2024 at 02:06 PM
--- Server version: 10.4.32-MariaDB
--- PHP Version: 8.2.12
+-- Generation Time: May 09, 2024 at 07:27 PM
+-- Server version: 10.4.28-MariaDB
+-- PHP Version: 8.0.28
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -100,18 +100,21 @@ CREATE TABLE `educational_resource` (
   `date_posted` date DEFAULT current_timestamp(),
   `user_ID` int(11) DEFAULT NULL,
   `img` longtext NOT NULL,
-  `status` varchar(50) NOT NULL DEFAULT 'pending'
+  `status` varchar(50) NOT NULL DEFAULT 'pending',
+  `admin_id` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `educational_resource`
 --
 
-INSERT INTO `educational_resource` (`resourceID`, `title`, `content`, `date_posted`, `user_ID`, `img`, `status`) VALUES
-(52, 'Climate Change', 'Climate change refers to long-term shifts in temperatures and weather patterns. Such shifts can be natural, due to changes in the sun’s activity or large volcanic eruptions. But since the 1800s, human activities have been the main driver of climate change, primarily due to the burning of fossil fuels like coal, oil and gas.\r\n\r\nBurning fossil fuels generates greenhouse gas emissions that act like a blanket wrapped around the Earth, trapping the sun’s heat and raising temperatures.\r\n\r\nThe main greenhouse gases that are causing climate change include carbon dioxide and methane. These come from using gasoline for driving a car or coal for heating a building, for example. Clearing land and cutting down forests can also release carbon dioxide. Agriculture, oil and gas operations are major sources of methane emissions. Energy, industry, transport, buildings, agriculture and land use are among the main sectors causing greenhouse gases.\r\n', '2024-05-07', 1, 'climate.jpg', 'approved'),
-(53, 'Afforestation', 'Afforestation is the establishment of a forest or stand of trees (forestation) in an area where there was no recent tree cover.In comparison, reforestation means re-establishing forest that have either been cut down or lost due to natural causes, such as fire, storm, etc. There are three types of afforestation: Natural regeneration, agroforestry and tree plantations.Afforestation has many benefits. In the context of climate change, afforestation can be helpful for climate change mitigation through the route of carbon sequestration. Afforestation can also improve the local climate through increased rainfall and by being a barrier against high winds. The additional trees can also prevent or reduce topsoil erosion (from water and wind), floods and landslides. Finally, additional trees can be a habitat for wildlife, and provide employment and wood products.', '2024-05-07', 3, 'afforestation.jpg', 'approved'),
-(54, 'Reforestation', 'Reforestation can be defined as the process of replanting trees in areas that have been affected by natural disturbances like wildfires, drought, and insect and disease infestations — and unnatural ones like logging, mining, agricultural clearing, and development. This can mean anything from supporting natural regeneration in an area that has been degraded to planting ecologically appropriate tree seedlings after forest fires.\r\n\r\nBy planting trees in areas that have been degraded or deforested, reforestation helps the environment by guaranteeing, or accelerating the re-establishment of healthy forest structure by regrowing the forest canopy and preserving biodiversity within the ecosystem.', '2024-05-07', 1, 'reforestation.jpg', 'approved'),
-(55, 'Tree Planting', 'Forests play a critical part to keep our environment healthy. But our forests need us more than ever – more than 1 million acres of National Forests are in need of reforestation. To bring awareness to this incredible need and the NFF’s 50 Million for our Forests campaign, we are excited to share 30 facts about reforestation.\r\n\r\nEcological & Environmental Value: Trees contribute to their environment by providing oxygen, improving air quality, climate enhancement, conserving water, preserving soil, and supporting wildlife. Personal & Spiritual Value: Most of us react to the presence of trees with a pleasant, relaxed, comfortable feeling.', '2024-05-07', 19, 'planting.jpg', 'pending');
+INSERT INTO `educational_resource` (`resourceID`, `title`, `content`, `date_posted`, `user_ID`, `img`, `status`, `admin_id`) VALUES
+(52, 'Climate Change', 'Climate change refers to long-term shifts in temperatures and weather patterns. Such shifts can be natural, due to changes in the sun’s activity or large volcanic eruptions. But since the 1800s, human activities have been the main driver of climate change, primarily due to the burning of fossil fuels like coal, oil and gas.\r\n\r\nBurning fossil fuels generates greenhouse gas emissions that act like a blanket wrapped around the Earth, trapping the sun’s heat and raising temperatures.\r\n\r\nThe main greenhouse gases that are causing climate change include carbon dioxide and methane. These come from using gasoline for driving a car or coal for heating a building, for example. Clearing land and cutting down forests can also release carbon dioxide. Agriculture, oil and gas operations are major sources of methane emissions. Energy, industry, transport, buildings, agriculture and land use are among the main sectors causing greenhouse gases.\r\n', '2024-05-09', 1, 'climate.jpg', 'approved', NULL),
+(53, 'Afforestation', 'Afforestation is the establishment of a forest or stand of trees (forestation) in an area where there was no recent tree cover.In comparison, reforestation means re-establishing forest that have either been cut down or lost due to natural causes, such as fire, storm, etc. There are three types of afforestation: Natural regeneration, agroforestry and tree plantations.Afforestation has many benefits. In the context of climate change, afforestation can be helpful for climate change mitigation through the route of carbon sequestration. Afforestation can also improve the local climate through increased rainfall and by being a barrier against high winds. The additional trees can also prevent or reduce topsoil erosion (from water and wind), floods and landslides. Finally, additional trees can be a habitat for wildlife, and provide employment and wood products.', '2024-05-07', 3, 'afforestation.jpg', 'approved', NULL),
+(54, 'Reforestation', 'Reforestation can be defined as the process of replanting trees in areas that have been affected by natural disturbances like wildfires, drought, and insect and disease infestations — and unnatural ones like logging, mining, agricultural clearing, and development. This can mean anything from supporting natural regeneration in an area that has been degraded to planting ecologically appropriate tree seedlings after forest fires.\r\n\r\nBy planting trees in areas that have been degraded or deforested, reforestation helps the environment by guaranteeing, or accelerating the re-establishment of healthy forest structure by regrowing the forest canopy and preserving biodiversity within the ecosystem.', '2024-05-10', 1, '212122.jfif', 'approved', NULL),
+(55, 'Tree Planting', 'Forests play a critical part to keep our environment healthy. But our forests need us more than ever – more than 1 million acres of National Forests are in need of reforestation. To bring awareness to this incredible need and the NFF’s 50 Million for our Forests campaign, we are excited to share 30 facts about reforestation.\r\n\r\nEcological & Environmental Value: Trees contribute to their environment by providing oxygen, improving air quality, climate enhancement, conserving water, preserving soil, and supporting wildlife. Personal & Spiritual Value: Most of us react to the presence of trees with a pleasant, relaxed, comfortable feeling.', '2024-05-07', 19, 'planting.jpg', 'pending', NULL),
+(86, 'Cleaning', 'Quis blandit turpis cursus in hac habitasse platea dictumst quisque. In egestas erat imperdiet sed euismod nisi porta lorem.', '2024-05-09', NULL, '663cfae09c113.jfif', 'approved', NULL),
+(94, 'Tank Cleaner', 'Consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Quisque egestas diam in arcu cursus euismod quis viverra nibh. ', '2024-05-09', NULL, '663cff50587f0.png', 'approved', NULL);
 
 -- --------------------------------------------------------
 
@@ -121,6 +124,7 @@ INSERT INTO `educational_resource` (`resourceID`, `title`, `content`, `date_post
 
 CREATE TABLE `events` (
   `id` int(11) NOT NULL,
+  `date` date DEFAULT NULL,
   `year` varchar(4) DEFAULT NULL,
   `month` varchar(3) DEFAULT NULL,
   `day` int(11) DEFAULT NULL,
@@ -133,17 +137,13 @@ CREATE TABLE `events` (
 -- Dumping data for table `events`
 --
 
-INSERT INTO `events` (`id`, `year`, `month`, `day`, `title`, `description`, `timing`) VALUES
-(1, '2023', 'Oct', 10, 'Tree Planting Extravaganza', 'Join us for a day of eco-friendly fun as we plant trees to restore our local forests. No experience necessary - just bring your enthusiasm and willingness to get your hands dirty!', '10:00 am'),
-(2, '2023', 'Dec', 22, 'Forestry 101: Sustainable Practices Workshop', 'Dive into the world of forestry with this informative workshop. Learn about sustainable forest management practices, the importance of biodiversity, and how you can help protect our precious forests for future generations.', '10:45 am'),
-(3, '2022', 'Jan', 8, 'Seed Gathering Expedition', 'Calling all nature lovers! Join us on a seed gathering adventure as we collect native tree seeds to support reforestation efforts. Learn how to identify different tree species and contribute to the preservation of our natural heritage.', '10:00 am'),
-(4, '2024', 'Mar', 9, 'Reforesting Minds: Awareness Campaign', 'Get involved in our mission to raise awareness about the importance of reforestation and the devastating effects of deforestation. Help spread the word through social media, educational materials, and community outreach events.', '10:30 am'),
-(5, '2024', 'Apr', 4, 'Nature\'s Harmony Festival', 'Immerse yourself in the beauty of nature at our art and music festival celebrating reforestation. Enjoy live music, art installations, and outdoor activities while supporting our mission to restore and protect forests.', '10:00 am'),
-(6, '2024', 'Jun', 8, 'Schools for Trees Program', 'Partner with us to engage students in hands-on reforestation projects and environmental education. Together, we can inspire the next generation of conservationists and create a brighter future for our forests.', '10:00 am'),
-(7, '2024', 'May', 23, 'asd', 'asd', '03:12 am\n'),
-(9, '2024', 'May', 10, 'asd', 'asd', '04:12 am'),
-(10, '2024', 'May', 1, 'asd', 'asd', '03:12 am'),
-(11, '2024', 'May', 7, 'yay', 'yayy', '04:00 pm');
+INSERT INTO `events` (`id`, `date`, `year`, `month`, `day`, `title`, `description`, `timing`) VALUES
+(1, '2023-10-10', '2023', 'Oct', 10, 'Exciting Announcement: Launch of New Product Line', '', '01:00 am'),
+(2, '2023-12-22', '2023', 'Dec', 22, 'Forestry 101: Sustainable Practices Workshop', 'Dive into the world of forestry with this informative workshop. Learn about sustainable forest management practices, the importance of biodiversity, and how you can help protect our precious forests for future generations.', '10:45 am'),
+(3, '2022-01-08', '2022', 'Jan', 8, 'Seed Gathering Expedition', 'Calling all nature lovers! Join us on a seed gathering adventure as we collect native tree seeds to support reforestation efforts. Learn how to identify different tree species and contribute to the preservation of our natural heritage.', '10:00 am'),
+(4, '2024-03-09', '2024', 'Mar', 9, 'Reforesting Minds: Awareness Campaign', 'Get involved in our mission to raise awareness about the importance of reforestation and the devastating effects of deforestation. Help spread the word through social media, educational materials, and community outreach events.', '10:30 am'),
+(5, '2024-04-04', '2024', 'Apr', 4, 'Nature\'s Harmony Festival', 'Immerse yourself in the beauty of nature at our art and music festival celebrating reforestation. Enjoy live music, art installations, and outdoor activities while supporting our mission to restore and protect forests.', '10:00 am'),
+(6, '2024-06-08', '2024', 'Jun', 8, 'Schools for Trees Program', 'Partner with us to engage students in hands-on reforestation projects and environmental education. Together, we can inspire the next generation of conservationists and create a brighter future for our forests.', '10:00 am');
 
 -- --------------------------------------------------------
 
@@ -157,6 +157,32 @@ CREATE TABLE `forum posts` (
   `forum_Category` varchar(300) NOT NULL,
   `date_Posted` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `news`
+--
+
+CREATE TABLE `news` (
+  `id` int(11) NOT NULL,
+  `year` varchar(4) DEFAULT NULL,
+  `month` varchar(3) DEFAULT NULL,
+  `day` int(11) DEFAULT NULL,
+  `title` varchar(255) DEFAULT NULL,
+  `description` longtext DEFAULT NULL,
+  `timing` varchar(20) DEFAULT NULL,
+  `image` longtext NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `news`
+--
+
+INSERT INTO `news` (`id`, `year`, `month`, `day`, `title`, `description`, `timing`, `image`) VALUES
+(22, '2024', 'May', 10, 'Deforestation', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.', '07:10 am', 'images (7).jfif'),
+(23, '2024', 'May', 11, 'Nature drip', 'Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.', '07:12 pm', 'images (8).jfif'),
+(24, '2024', 'May', 10, 'Forest', 'Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.', '07:12 am', 'images (9).jfif');
 
 -- --------------------------------------------------------
 
@@ -183,6 +209,31 @@ CREATE TABLE `resource posts` (
   `resource_Category` varchar(300) NOT NULL,
   `date_Posted` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `shared_clicks`
+--
+
+CREATE TABLE `shared_clicks` (
+  `click_id` int(11) NOT NULL,
+  `resourceID` int(11) NOT NULL,
+  `user_ID` int(11) NOT NULL,
+  `click_time` timestamp NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `shared_clicks`
+--
+
+INSERT INTO `shared_clicks` (`click_id`, `resourceID`, `user_ID`, `click_time`) VALUES
+(12, 53, 3, '2024-05-09 10:06:02'),
+(13, 53, 3, '2024-05-09 10:08:14'),
+(16, 53, 3, '2024-05-09 17:02:38'),
+(22, 54, 1, '2024-05-09 17:10:15'),
+(29, 53, 3, '2024-05-09 17:23:36'),
+(30, 54, 1, '2024-05-09 17:24:08');
 
 -- --------------------------------------------------------
 
@@ -238,7 +289,8 @@ ALTER TABLE `community groups`
 --
 ALTER TABLE `educational_resource`
   ADD PRIMARY KEY (`resourceID`),
-  ADD KEY `user_ID` (`user_ID`);
+  ADD KEY `user_ID` (`user_ID`),
+  ADD KEY `fk_admin_id` (`admin_id`);
 
 --
 -- Indexes for table `events`
@@ -253,6 +305,12 @@ ALTER TABLE `forum posts`
   ADD PRIMARY KEY (`forumPost_ID`);
 
 --
+-- Indexes for table `news`
+--
+ALTER TABLE `news`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `partners`
 --
 ALTER TABLE `partners`
@@ -263,6 +321,14 @@ ALTER TABLE `partners`
 --
 ALTER TABLE `resource posts`
   ADD PRIMARY KEY (`resourcePost_ID`);
+
+--
+-- Indexes for table `shared_clicks`
+--
+ALTER TABLE `shared_clicks`
+  ADD PRIMARY KEY (`click_id`),
+  ADD KEY `resourceID` (`resourceID`),
+  ADD KEY `user_ID` (`user_ID`);
 
 --
 -- Indexes for table `user`
@@ -296,19 +362,25 @@ ALTER TABLE `community groups`
 -- AUTO_INCREMENT for table `educational_resource`
 --
 ALTER TABLE `educational_resource`
-  MODIFY `resourceID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=56;
+  MODIFY `resourceID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=96;
 
 --
 -- AUTO_INCREMENT for table `events`
 --
 ALTER TABLE `events`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT for table `forum posts`
 --
 ALTER TABLE `forum posts`
   MODIFY `forumPost_ID` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `news`
+--
+ALTER TABLE `news`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 
 --
 -- AUTO_INCREMENT for table `partners`
@@ -321,6 +393,12 @@ ALTER TABLE `partners`
 --
 ALTER TABLE `resource posts`
   MODIFY `resourcePost_ID` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `shared_clicks`
+--
+ALTER TABLE `shared_clicks`
+  MODIFY `click_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
 
 --
 -- AUTO_INCREMENT for table `user`
@@ -342,7 +420,15 @@ ALTER TABLE `allforums`
 -- Constraints for table `educational_resource`
 --
 ALTER TABLE `educational_resource`
-  ADD CONSTRAINT `educational_resource_ibfk_1` FOREIGN KEY (`user_ID`) REFERENCES `user` (`user_ID`);
+  ADD CONSTRAINT `educational_resource_ibfk_1` FOREIGN KEY (`user_ID`) REFERENCES `user` (`user_ID`),
+  ADD CONSTRAINT `fk_admin_id` FOREIGN KEY (`admin_id`) REFERENCES `admin_account` (`id`);
+
+--
+-- Constraints for table `shared_clicks`
+--
+ALTER TABLE `shared_clicks`
+  ADD CONSTRAINT `shared_clicks_ibfk_1` FOREIGN KEY (`resourceID`) REFERENCES `educational_resource` (`resourceID`),
+  ADD CONSTRAINT `shared_clicks_ibfk_2` FOREIGN KEY (`user_ID`) REFERENCES `user` (`user_ID`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
