@@ -868,16 +868,12 @@ if (!isset($_SESSION["adminloggedin"]) || $_SESSION["adminloggedin"] !== true) {
                                                         <input style="width:49%; position: absolute;left: -500000px; opacity: 0;" id="getYear" readonly name="year">
 
                                                         <input style="width:49%" required type="time" name="timing">
-
-
-
                                                     </div>
 
                                                     <input required placeholder="Title" type="text" name="title">
 
                                                     <textarea required placeholder="Description" name="description" type="email"></textarea>
-                                                    <input required placeholder="img" type="file" name="image">
-                                                    
+                                                    <input type="file" name="photo" id="photo">
 
                                                     <button class="button_submit">Submit</button>
                                                 </div>

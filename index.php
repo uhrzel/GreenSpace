@@ -396,6 +396,7 @@ We collaborate with diverse stakeholders, including local communities, governmen
             </div>
         </div>-->
 
+
         <section class="home-blog-area pb-padding">
             <div class="container">
                 <!-- Section Title -->
@@ -408,8 +409,7 @@ We collaborate with diverse stakeholders, including local communities, governmen
                     </div>
                 </div>
                 <div class="row">
-                    <!-- News Placeholder -->
-                    <!-- News items will be dynamically inserted here -->
+
                     <?php
                     // Include your PHP code to fetch and display news details here
                     include './admin/fetch-news.php';

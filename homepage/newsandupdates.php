@@ -202,6 +202,7 @@ if ($result) {
                                 echo '<div class="blog-cap">';
                                 echo '<h3><a href="#">' . $news['title'] . '</a></h3>';
                                 echo '<p style="font-family: \'Poppins\';">' . $news['description'] . '</p>';
+                                echo '<button type="button" class="btn btn-primary read-more" data-id="' . $news['id'] . '">Read More</button>';
                                 echo '</div>';
                                 echo '</div>';
                                 echo '</div>';
@@ -226,6 +227,46 @@ if ($result) {
                 </div>
             </div>
         </section>
+
+        <div class="modal fade" id="newsModal" tabindex="-1" role="dialog" aria-labelledby="newsModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="newsModalLabel">News Details</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body" id="newsModalBody">
+                        <!-- News details will be loaded here -->
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <script>
+            document.addEventListener("DOMContentLoaded", function() {
+                // Handle click event for "Read More" buttons
+                const readMoreButtons = document.querySelectorAll('.read-more');
+                readMoreButtons.forEach(button => {
+                    button.addEventListener('click', function() {
+                        const newsId = this.getAttribute('data-id');
+                        fetchNewsDetails(newsId);
+                    });
+                });
+
+                // Function to fetch and display news details in modal
+                function fetchNewsDetails(newsId) {
+                    fetch('./news-details.php?id=' + newsId)
+                        .then(response => response.text())
+                        .then(data => {
+                            document.getElementById('newsModalBody').innerHTML = data;
+                            $('#newsModal').modal('show');
+                        })
+                        .catch(error => console.error('Error fetching news details:', error));
+                }
+            });
+        </script>
 
         <!-- Blog Area End -->
         <footer>

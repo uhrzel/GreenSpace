@@ -190,12 +190,12 @@ if ($result) {
           $output .= '<h3 class="year">' . $year . '</h3>';
 
           // Get events for this year
-          $events_sql = "SELECT * FROM events WHERE year = '$year' ORDER BY month DESC";
+          $events_sql = "SELECT * FROM events WHERE year = '$year' ORDER BY month DESC, day ASC";
           $events_result = $con->query($events_sql);
           if ($events_result->num_rows > 0) {
             while ($event_row = $events_result->fetch_assoc()) {
               $output .= '<div class="event" style="overflow:hidden">';
-              $output .= '<div class="event-left" >';
+              $output .= '<div class="event-left">';
               $output .= '<div class="event-date">';
               $output .= '<div class="date">' . $event_row["day"] . '</div>';
               $output .= '<div class="month">' . $event_row["month"] . '</div>';
@@ -204,16 +204,9 @@ if ($result) {
               $output .= '<div class="event-right" style="width:100%">';
               $output .= '<h3 class="event-title">' . $event_row["title"] . '</h3>';
               $output .= '<div class="event-description">' . $event_row["description"] . '</div>';
-
-
               $output .= '<div class="event-timing" style="margin-right:10px;">';
               $output .= '<img src="assets/img/events/time.png" alt="" /> ' . $event_row["timing"];
               $output .= '</div>';
-
-
-
-
-
               $output .= '</div>';
               $output .= '</div>';
             }
@@ -227,7 +220,21 @@ if ($result) {
 
       $con->close();
       ?>
+
     </div>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+
+    <script>
+      function joinEvent() {
+        // Show SweetAlert message
+        Swal.fire({
+          title: 'Success!',
+          text: 'You successfully joined this event. We will contact you in your email for more info.',
+          icon: 'success',
+          confirmButtonText: 'OK'
+        });
+      }
+    </script>
 
 
   </main>

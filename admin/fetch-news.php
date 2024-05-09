@@ -16,11 +16,13 @@ if ($result) {
             echo '<div class="home-blog-single mb-30">';
             echo '<div class="blog-img-cap">';
             echo '<div class="blog-img">';
-            echo '<img src="uploads/' . $news['image'] . '" alt="">';
+            echo '<img src="admin/uploads/' . $news['image'] . '" alt="">';
             echo '</div>';
             echo '<div class="blog-cap">';
-            echo '<h3><a href="#">' . $news['title'] . '</a></h3>';
+            echo '<h3><a href="#" class="news-title" data-id="' . $news['id'] . '">' . $news['title'] . '</a></h3>';
             echo '<p style="font-family: \'Poppins\';">' . $news['description'] . '</p>';
+            // Add "Read More" button triggering modal
+            echo '<button type="button" class="btn btn-primary read-more" data-id="' . $news['id'] . '">Read More</button>';
             echo '</div>';
             echo '</div>';
             echo '</div>';
@@ -41,3 +43,45 @@ if ($result) {
 
 // Close the database connection
 mysqli_close($con);
+?>
+
+<!-- Modal -->
+<div class="modal fade" id="newsModal" tabindex="-1" role="dialog" aria-labelledby="newsModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="newsModalLabel">News Details</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body" id="newsModalBody">
+                <!-- News details will be loaded here -->
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        // Handle click event for "Read More" buttons
+        const readMoreButtons = document.querySelectorAll('.read-more');
+        readMoreButtons.forEach(button => {
+            button.addEventListener('click', function() {
+                const newsId = this.getAttribute('data-id');
+                fetchNewsDetails(newsId);
+            });
+        });
+
+        // Function to fetch and display news details in modal
+        function fetchNewsDetails(newsId) {
+            fetch('./news-details.php?id=' + newsId)
+                .then(response => response.text())
+                .then(data => {
+                    document.getElementById('newsModalBody').innerHTML = data;
+                    $('#newsModal').modal('show');
+                })
+                .catch(error => console.error('Error fetching news details:', error));
+        }
+    });
+</script>

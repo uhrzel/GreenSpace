@@ -12,35 +12,37 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $description = $_POST['description'];
     $timing = $_POST['timing'];
 
-    // File upload handling
-    $image = $_FILES['image']['name'];
-    $image_temp = $_FILES['image']['tmp_name'];
-    $image_destination = $targetDir . $image; // Define your destination folder for uploaded images
+    $filename = $_FILES['photo']['name'];
 
-    // Check if the uploaded file is an image
-    if (exif_imagetype($image_temp)) {
-        // Move uploaded file to destination
-        if (move_uploaded_file($image_temp, $image_destination)) {
-            // Convert timing to 24-hour format
+    // Check if file was uploaded successfully
+    if (!empty($filename)) {
+        // Move the uploaded file to the target directory
+        $targetFilePath = $targetDir . basename($filename);
+        if (move_uploaded_file($_FILES['photo']['tmp_name'], $targetFilePath)) {
+            // File uploaded successfully, insert data into the database
             $timing_12h = date('h:i a', strtotime($timing));
 
-            // Create a date string in the format YYYY-MM-DD
-            $date = $year . '-' . $month . '-' . $day;
-
             // Insert data into news table
-            $sql = "INSERT INTO news (year, month, day, title, description, timing, image) VALUES ('$year', '$month', '$day', '$title', '$description', '$timing_12h', '$image_destination')";
+            $sql = "INSERT INTO news (year, month, day, title, description, timing, image) VALUES ('$year', '$month', '$day', '$title', '$description', '$timing_12h', '$filename')";
 
             if ($con->query($sql) === TRUE) {
+                // News added successfully
+                $newsID = $con->insert_id; // Retrieve the ID of the inserted news item
                 echo "News added successfully";
+
             } else {
+                // Error inserting data into the database
                 echo "Error: " . $sql . "<br>" . $con->error;
             }
         } else {
-            echo "Error uploading image.";
+            // Error uploading file
+            echo "Error uploading file";
         }
     } else {
-        echo "Invalid file format. Please upload an image.";
+        // No file uploaded
+        echo "Please select an image file";
     }
 }
 
+// Close the database connection
 $con->close();

@@ -31,23 +31,21 @@ if (isset($_SESSION['user_email'])) {
   <link rel="stylesheet" href="assets/css/style.css">
   <link rel="stylesheet" href="assets/css/styleEvents.css">
   <link rel="stylesheet" href="assets/css/styleEventsCalendar.css">
- <style type="text/css">
-        @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+  <style type="text/css">
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 
-        * {
-            font-family: 'Poppins'
-        }
+    * {
+      font-family: 'Poppins'
+    }
 
-        body {
-            font-family: 'Poppins'
-        }
+    body {
+      font-family: 'Poppins'
+    }
 
-        html {
-            font-family: 'Poppins'
-        }
-
-
-    </style>
+    html {
+      font-family: 'Poppins'
+    }
+  </style>
 
 </head>
 
@@ -89,11 +87,11 @@ if (isset($_SESSION['user_email'])) {
                         <li><a href="about">About Us</a></li>
                         <li><a href="greenTips">GreenLiving Tips</a></li>
                         <li><a href="Educational">Educational Resources</a></li>
-                        <li><a  style="color:#49C2B7">Community</a>
+                        <li><a style="color:#49C2B7">Community</a>
 
                           <ul class="submenu">
                             <li><a href="forums">Forums</a></li>
-                            <li><a href="eventcalendar"style="color:#49C2B7">Event Calendar</a></li>
+                            <li><a href="eventcalendar" style="color:#49C2B7">Event Calendar</a></li>
                             <li><a href="partnership">Partnership & Collaboration</a></li>
                             <li><a href="newsandupdates">News & Updates</a></li>
                           </ul>
@@ -105,7 +103,7 @@ if (isset($_SESSION['user_email'])) {
                   </div>
                   <!-- Header-btn -->
                   <div class="header-right-btn d-none d-lg-block ml-20">
-                  <a href="eventcalendar" class="btn header-btn">Join Events</a>
+                    <a href="eventcalendar" class="btn header-btn">Join Events</a>
                   </div>
                 </div>
               </div>
@@ -145,63 +143,76 @@ if (isset($_SESSION['user_email'])) {
     <!-- Hero End -->
     <!--? Services Area Start -->
 
-   <div class="event-container">
+    <div class="event-container">
 
-   
-    <?php
-include 'db.php';
+      <?php
+      include 'db.php';
 
-$sql = "SELECT DISTINCT year FROM events ORDER BY year DESC";
-$result = $con->query($sql);
+      $sql = "SELECT DISTINCT year FROM events ORDER BY year DESC";
+      $result = $con->query($sql);
 
-$output = "";
-if ($result->num_rows > 0) {
-    // output data of each row
-    while($row = $result->fetch_assoc()) {
-        $year = $row["year"];
-        $output .= '<h3 class="year">' . $year . '</h3>';
+      $output = "";
+      if ($result->num_rows > 0) {
+        // output data of each row
+        while ($row = $result->fetch_assoc()) {
+          $year = $row["year"];
+          $output .= '<h3 class="year">' . $year . '</h3>';
 
-        // Get events for this year
-        $events_sql = "SELECT * FROM events WHERE year = '$year' ORDER BY month DESC";
-        $events_result = $con->query($events_sql);
-        if ($events_result->num_rows > 0) {
-            while($event_row = $events_result->fetch_assoc()) {
-                $output .= '<div class="event" style="overflow:hidden">';
-                $output .= '<div class="event-left" >';
-                $output .= '<div class="event-date">';
-                $output .= '<div class="date">' . $event_row["day"] . '</div>';
-                $output .= '<div class="month">' . $event_row["month"] . '</div>';
-                $output .= '</div>';
-                $output .= '</div>';
-                $output .= '<div class="event-right" style="width:100%">';
-                $output .= '<h3 class="event-title">' . $event_row["title"] . '</h3>';
-                $output .= '<div class="event-description">' . $event_row["description"] . '</div>';
+          // Get events for this year
+          $events_sql = "SELECT * FROM events WHERE year = '$year' ORDER BY month ASC";
+          $events_result = $con->query($events_sql);
+          if ($events_result->num_rows > 0) {
+            while ($event_row = $events_result->fetch_assoc()) {
+              $output .= '<div class="event" style="overflow:hidden">';
+              $output .= '<div class="event-left" >';
+              $output .= '<div class="event-date">';
+              $output .= '<div class="date">' . $event_row["day"] . '</div>';
+              $output .= '<div class="month">' . $event_row["month"] . '</div>';
+              $output .= '</div>';
+              $output .= '</div>';
+              $output .= '<div class="event-right" style="width:100%">';
+              $output .= '<h3 class="event-title">' . $event_row["title"] . '</h3>';
+              $output .= '<div class="event-description">' . $event_row["description"] . '</div>';
 
-        
-                $output .= '<div class="event-timing" style="margin-right:10px;">';
-                $output .= '<img src="assets/img/events/time.png" alt="" /> ' . $event_row["timing"];
-                $output .= '</div>';
+              // Add the event timing
+              $output .= '<div class="event-timing">';
+              $output .= '<img src="assets/img/events/time.png" alt="" /> &nbsp;' . $event_row["timing"];
+              $output .= '</div>';
 
-         
+              $output .= '<div>';
+              $output .= '<button class="btn btn-primary"  onclick="joinEvent()">Join Us</button>';
 
-             
+              $output .= '</div>';
 
-                $output .= '</div>';
-                $output .= '</div>';
+              $output .= '</div>';
+              $output .= '</div>';
             }
-        } 
-    }
-} else {
-    $output = "0 results";
-}
+          }
+        }
+      } else {
+        $output = "0 results";
+      }
 
-echo $output;
+      echo $output;
 
-$con->close();
-?>
+      $con->close();
+      ?>
+
     </div>
   </main>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 
+  <script>
+    function joinEvent() {
+      // Show SweetAlert message
+      Swal.fire({
+        title: 'Success!',
+        text: 'You successfully joined this event. We will contact you in your email for more info.',
+        icon: 'success',
+        confirmButtonText: 'OK'
+      });
+    }
+  </script>
 
   <footer>
     <div class="footer-wrapper">
@@ -214,74 +225,76 @@ $con->close();
                 <div class="single-footer-caption mb-30">
                   <!-- logo -->
                   <div class="footer-logo mb-20">
-                                        <a href="index"><img src="assets/img/logo/newlogo.jpg" alt="" style="width: 100px; height: 100px; margin-left: 75px;"></a>
-                                    </div>
-                                    <div class="footer-tittle">
-                                        <div class="footer-pera">
-                                            <p style="font-family: 'Poppins';">Let's make the world greener together!
-                                            </p>
-                                        </div>
-                                    </div>
-                                    <!-- social -->
-                                    <div class="footer-social" style="margin-left: 55px;">
-                                        <a href="#"><i class="fab fa-twitter"></i></a>
-                                        <a href="https://bit.ly/sai4ull"><i class="fab fa-facebook-f"></i></a>
-                                        <a href="#"><i class="fab fa-pinterest-p"></i></a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-xl-2 col-lg-3 col-md-4 col-sm-4">
-                            <div class="single-footer-caption mt-0px">
-                                <div class="footer-tittle">
-                                    <h4 style="font-family: 'Poppins';">Our solutions</h4>
-                                    <ul>
-                                        <li><a href="#">Design & creatives</a></li>
-                                        <li><a href="#">Telecommunication</a></li>
-                                        <li><a href="#">Restaurant</a></li>
-                                        <li><a href="#">Programing</a></li>
-                                        <li><a href="#">Architecture</a></li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-xl-2 col-lg-2 col-md-4 col-sm-4">
-                            <div class="single-footer-caption mb-50">
-                                <div class="footer-tittle">
-                                    <h4 style="font-family: 'Poppins';">Company</h4>
-                                    <ul>
-                                        <li><a href="#">About</a></li>
-                                        <li><a href="#">Review</a></li>
-                                        <li><a href="#">Insights</a></li>
-                                        <li><a href="#">Carrier</a></li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-xl-3 col-lg-4 col-md-6 col-sm-4">
-                            <div class="single-footer-caption mb-50">
-                                <div class="footer-tittle">
-                                    <h4 style="font-family: 'Poppins';">Contact us</h4>
-                                    <ul>
-                                        <li><a href="#">consulto98@gmail.com</a></li>
-                                        <li><a href="#">76/A, Green road, NYC</a></li>
-                                        <li><a href="#">Privacy Policy</a></li>
-                                        <li class="number"><a href="#">(80) 783 367-3904</a></li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
+                    <a href="index"><img src="assets/img/logo/newlogo.jpg" alt="" style="width: 100px; height: 100px; margin-left: 75px;"></a>
+                  </div>
+                  <div class="footer-tittle">
+                    <div class="footer-pera">
+                      <p style="font-family: 'Poppins';">Let's make the world greener together!
+                      </p>
                     </div>
+                  </div>
+                  <!-- social -->
+                  <div class="footer-social" style="margin-left: 55px;">
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="https://bit.ly/sai4ull"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-pinterest-p"></i></a>
+                  </div>
                 </div>
-                <div style="margin-bottom: 0px;height: 10px; background: transparent;text-align: center;color: white; margin-top: 80px">
-                    <p style="color: white;font-family: 'Poppins', sans-serif;">Copyright &copy;
-                        <script>document.write(new Date().getFullYear());</script> All rights reserved by GreenSpace.
-                    </p>
-                </div>
+              </div>
             </div>
-
+            <div class="col-xl-2 col-lg-3 col-md-4 col-sm-4">
+              <div class="single-footer-caption mt-0px">
+                <div class="footer-tittle">
+                  <h4 style="font-family: 'Poppins';">Our solutions</h4>
+                  <ul>
+                    <li><a href="#">Design & creatives</a></li>
+                    <li><a href="#">Telecommunication</a></li>
+                    <li><a href="#">Restaurant</a></li>
+                    <li><a href="#">Programing</a></li>
+                    <li><a href="#">Architecture</a></li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <div class="col-xl-2 col-lg-2 col-md-4 col-sm-4">
+              <div class="single-footer-caption mb-50">
+                <div class="footer-tittle">
+                  <h4 style="font-family: 'Poppins';">Company</h4>
+                  <ul>
+                    <li><a href="#">About</a></li>
+                    <li><a href="#">Review</a></li>
+                    <li><a href="#">Insights</a></li>
+                    <li><a href="#">Carrier</a></li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <div class="col-xl-3 col-lg-4 col-md-6 col-sm-4">
+              <div class="single-footer-caption mb-50">
+                <div class="footer-tittle">
+                  <h4 style="font-family: 'Poppins';">Contact us</h4>
+                  <ul>
+                    <li><a href="#">consulto98@gmail.com</a></li>
+                    <li><a href="#">76/A, Green road, NYC</a></li>
+                    <li><a href="#">Privacy Policy</a></li>
+                    <li class="number"><a href="#">(80) 783 367-3904</a></li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
-    </footer>
+        <div style="margin-bottom: 0px;height: 10px; background: transparent;text-align: center;color: white; margin-top: 80px">
+          <p style="color: white;font-family: 'Poppins', sans-serif;">Copyright &copy;
+            <script>
+              document.write(new Date().getFullYear());
+            </script> All rights reserved by GreenSpace.
+          </p>
+        </div>
+      </div>
+
+    </div>
+  </footer>
 
   <!-- Scroll Up -->
   <div id="back-top">
@@ -333,15 +346,25 @@ $con->close();
 
 
   <script>
-
-    document.addEventListener('DOMContentLoaded', function () {
+    document.addEventListener('DOMContentLoaded', function() {
       const calendar = document.getElementById('calendar');
 
       // Sample events data
-      const events = [
-        { date: '2024-04-15', title: 'Event 1', description: 'Description for Event 1' },
-        { date: '2024-04-20', title: 'Event 2', description: 'Description for Event 2' },
-        { date: '2024-04-25', title: 'Event 3', description: 'Description for Event 3' }
+      const events = [{
+          date: '2024-04-15',
+          title: 'Event 1',
+          description: 'Description for Event 1'
+        },
+        {
+          date: '2024-04-20',
+          title: 'Event 2',
+          description: 'Description for Event 2'
+        },
+        {
+          date: '2024-04-25',
+          title: 'Event 3',
+          description: 'Description for Event 3'
+        }
       ];
 
       // Render calendar
@@ -400,8 +423,6 @@ $con->close();
       const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
       return months[currentDate.getMonth()];
     }
-
-
   </script>
 
 </body>

@@ -4,7 +4,7 @@ include("db.php");
 // File upload directory
 $targetDir = "../uploadEducRes/";
 
-if(isset($_POST['title']) && isset($_POST['content'])) {
+if (isset($_POST['title']) && isset($_POST['content'])) {
     // Insert new resource
     $title = $_POST["title"];
     $content = $_POST["content"];
@@ -46,4 +46,3 @@ if(isset($_POST['title']) && isset($_POST['content'])) {
         echo json_encode(array("message" => "Insert failed."));
     }
 }
-?>
