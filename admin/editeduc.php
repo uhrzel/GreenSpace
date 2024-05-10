@@ -37,11 +37,16 @@ $date_posted = date("Y-m-d H:i:s"); // Get current date and time
 
 
 $filename = $_POST["filename"];
-
-// Update resource
-$query = "UPDATE educational_resource SET title='$title', content='$content', date_posted='$date_posted', user_ID='$user_ID', img='$filename' WHERE resourceID='$resourceID'";
+// Check if user_ID is null
+$user_ID = $_POST["user_ID"];
+if ($user_ID == null) {
+    // Update resource if user_ID is null
+    $query = "UPDATE educational_resource SET title='$title', content='$content', date_posted='$date_posted', img='$filename' WHERE resourceID='$resourceID' AND user_ID IS NULL";
+} else {
+    // Update resource if user_ID is not null
+    $query = "UPDATE educational_resource SET title='$title', content='$content', date_posted='$date_posted', img='$filename' WHERE resourceID='$resourceID' AND user_ID='$user_ID'";
+}
 $result = mysqli_query($con, $query);
-
 if ($result) {
     // Resource updated successfully
     echo "Save changes successfully!";
