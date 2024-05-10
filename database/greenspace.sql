@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 09, 2024 at 07:27 PM
+-- Generation Time: May 10, 2024 at 02:06 PM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.0.28
 
@@ -161,6 +161,29 @@ CREATE TABLE `forum posts` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `join_users`
+--
+
+CREATE TABLE `join_users` (
+  `id` int(11) NOT NULL,
+  `event_id` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `registration_date` timestamp NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `join_users`
+--
+
+INSERT INTO `join_users` (`id`, `event_id`, `user_id`, `registration_date`) VALUES
+(1, 4, 19, '2024-05-10 11:55:46'),
+(2, 4, 19, '2024-05-10 12:01:52'),
+(3, 2, 3, '2024-05-10 12:03:29'),
+(4, 6, 3, '2024-05-10 12:04:20');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `news`
 --
 
@@ -305,6 +328,14 @@ ALTER TABLE `forum posts`
   ADD PRIMARY KEY (`forumPost_ID`);
 
 --
+-- Indexes for table `join_users`
+--
+ALTER TABLE `join_users`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `event_id` (`event_id`),
+  ADD KEY `user_id` (`user_id`);
+
+--
 -- Indexes for table `news`
 --
 ALTER TABLE `news`
@@ -377,6 +408,12 @@ ALTER TABLE `forum posts`
   MODIFY `forumPost_ID` int(11) NOT NULL AUTO_INCREMENT;
 
 --
+-- AUTO_INCREMENT for table `join_users`
+--
+ALTER TABLE `join_users`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
 -- AUTO_INCREMENT for table `news`
 --
 ALTER TABLE `news`
@@ -422,6 +459,13 @@ ALTER TABLE `allforums`
 ALTER TABLE `educational_resource`
   ADD CONSTRAINT `educational_resource_ibfk_1` FOREIGN KEY (`user_ID`) REFERENCES `user` (`user_ID`),
   ADD CONSTRAINT `fk_admin_id` FOREIGN KEY (`admin_id`) REFERENCES `admin_account` (`id`);
+
+--
+-- Constraints for table `join_users`
+--
+ALTER TABLE `join_users`
+  ADD CONSTRAINT `join_users_ibfk_1` FOREIGN KEY (`event_id`) REFERENCES `events` (`id`),
+  ADD CONSTRAINT `join_users_ibfk_2` FOREIGN KEY (`user_id`) REFERENCES `user` (`user_ID`);
 
 --
 -- Constraints for table `shared_clicks`

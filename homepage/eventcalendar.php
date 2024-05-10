@@ -207,6 +207,11 @@ if ($result) {
               $output .= '<div class="event-timing" style="margin-right:10px;">';
               $output .= '<img src="assets/img/events/time.png" alt="" /> ' . $event_row["timing"];
               $output .= '</div>';
+
+
+              $output .= '<div>';
+              $output .= '<button class="btn btn-primary" onclick="joinEvent(' . $event_row["id"] . ', ' . $user_ID . ')">Join Us</button>';
+              $output .= '</div>';
               $output .= '</div>';
               $output .= '</div>';
             }
@@ -223,20 +228,47 @@ if ($result) {
 
     </div>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
-
     <script>
-      function joinEvent() {
-        // Show SweetAlert message
-        Swal.fire({
-          title: 'Success!',
-          text: 'You successfully joined this event. We will contact you in your email for more info.',
-          icon: 'success',
-          confirmButtonText: 'OK'
-        });
+      function joinEvent(event_id, user_id) {
+        // Send event ID and user ID to join_event.php
+        var xhr = new XMLHttpRequest();
+        xhr.open("GET", "join_event.php?event_id=" + event_id + "&user_id=" + user_id, true);
+        xhr.onload = function() {
+          if (xhr.readyState == 4 && xhr.status == 200) {
+            // Parse response as JSON
+            var response = JSON.parse(xhr.responseText);
+            // Check if registration was successful
+            if (response.success) {
+              // Show SweetAlert success message
+              Swal.fire({
+                title: 'Success!',
+                text: response.message,
+                icon: 'success',
+                confirmButtonText: 'OK'
+              });
+            } else {
+              // Show SweetAlert error message
+              Swal.fire({
+                title: 'Error!',
+                text: response.message,
+                icon: 'error',
+                confirmButtonText: 'OK'
+              });
+            }
+          }
+        };
+        xhr.send();
       }
     </script>
 
+    </script>
 
+    <!--    Swal.fire({
+    title: 'Success!',
+    text: 'You successfully joined this event. We will contact you in your email for more info.',
+    icon: 'success',
+    confirmButtonText: 'OK'
+    }); -->
   </main>
   <footer>
     <div class="footer-wrapper">

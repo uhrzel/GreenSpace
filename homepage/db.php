@@ -1,7 +1,7 @@
 <?php
 $host = 'localhost'; // MySQL server hostname
 $user = 'root'; // MySQL username
-$password = 'arzelzolina10'; // MySQL password
+$password = ''; // MySQL password
 $database = 'greenspace'; // MySQL database name
 
 
