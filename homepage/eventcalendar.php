@@ -263,12 +263,7 @@ if ($result) {
 
     </script>
 
-    <!--    Swal.fire({
-    title: 'Success!',
-    text: 'You successfully joined this event. We will contact you in your email for more info.',
-    icon: 'success',
-    confirmButtonText: 'OK'
-    }); -->
+  
   </main>
   <footer>
     <div class="footer-wrapper">
