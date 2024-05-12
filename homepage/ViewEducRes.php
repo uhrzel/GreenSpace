@@ -8,8 +8,21 @@ if (!isset($_SESSION['user_email'])) {
 
 include 'db.php'; // Include database connection file
 
+// Retrieve the user_ID associated with the logged-in user's email
+$user_email = $_SESSION['user_email'];
+$query_user_id = "SELECT `user_ID` FROM `user` WHERE `user_email` = ?";
+$stmt_user_id = mysqli_prepare($con, $query_user_id);
+mysqli_stmt_bind_param($stmt_user_id, "s", $user_email);
+mysqli_stmt_execute($stmt_user_id);
+$result_user_id = mysqli_stmt_get_result($stmt_user_id);
+$user_id_row = mysqli_fetch_assoc($result_user_id);
+$user_ID = $user_id_row['user_ID'];
+mysqli_stmt_close($stmt_user_id);
+
+// Check if resourceID is set in the URL
 if (isset($_GET['title'])) {
     $title = $_GET['title'];
+
     // Prepare and execute the query to fetch educational resource data
     $query = "SELECT `resourceID`, `title`, `content`, `date_posted`, `user_ID`, `img` FROM `educational_resource` WHERE `title` = ?";
     $stmt = mysqli_prepare($con, $query);
@@ -19,25 +32,47 @@ if (isset($_GET['title'])) {
     $row = mysqli_fetch_assoc($result);
     mysqli_stmt_close($stmt);
 
-    // Format the date_posted
-    $date_posted = date('F j, Y', strtotime($row['date_posted']));
+    // Check if the resource exists
+    if ($row) {
+        // Format the date_posted
+        $date_posted = date('F j, Y', strtotime($row['date_posted']));
 
-    // Get the user_name associated with the user_ID
-    if (is_null($row['user_ID'])) {
-        $user_name = "Admin";
+        // Get the user_name associated with the user_ID
+        if (is_null($row['user_ID'])) {
+            $user_name = "Admin";
+        } else {
+            // Prepare and execute the query to fetch user_name
+            $query_user = "SELECT `user_name` FROM `user` WHERE `user_ID` = ?";
+            $stmt_user = mysqli_prepare($con, $query_user);
+            mysqli_stmt_bind_param($stmt_user, "i", $row['user_ID']);
+            mysqli_stmt_execute($stmt_user);
+            $result_user = mysqli_stmt_get_result($stmt_user);
+            $user_row = mysqli_fetch_assoc($result_user);
+            $user_name = $user_row['user_name'];
+            mysqli_stmt_close($stmt_user);
+        }
+
+        // Prepare and execute the query to count shares
+        $query_share_count = "SELECT COUNT(*) AS share_count FROM `shared_clicks` WHERE `resourceID` = ?";
+        $stmt_share_count = mysqli_prepare($con, $query_share_count);
+        mysqli_stmt_bind_param($stmt_share_count, "i", $row['resourceID']);
+        mysqli_stmt_execute($stmt_share_count);
+        $result_share_count = mysqli_stmt_get_result($stmt_share_count);
+        $share_count_row = mysqli_fetch_assoc($result_share_count);
+        $share_count = $share_count_row['share_count'];
+        mysqli_stmt_close($stmt_share_count);
     } else {
-        // Prepare and execute the query to fetch user_name
-        $query_user = "SELECT `user_name` FROM `user` WHERE `user_ID` = ?";
-        $stmt_user = mysqli_prepare($con, $query_user);
-        mysqli_stmt_bind_param($stmt_user, "i", $row['user_ID']);
-        mysqli_stmt_execute($stmt_user);
-        $result_user = mysqli_stmt_get_result($stmt_user);
-        $user_row = mysqli_fetch_assoc($result_user);
-        $user_name = $user_row['user_name'];
-        mysqli_stmt_close($stmt_user);
+        // Resource not found
+        echo "Resource not found.";
+        exit();
     }
+} else {
+    // Resource title not provided
+    echo "Resource title not provided.";
+    exit();
 }
 ?>
+
 
 <!doctype html>
 <html class="no-js" lang="zxx">
@@ -121,6 +156,57 @@ if (isset($_GET['title'])) {
 </head>
 
 <body>
+
+    <?php
+    // Fetch the users who shared the educational resource
+    $query_shared_users = "SELECT u.user_name FROM shared_clicks s JOIN user u ON s.user_ID = u.user_ID WHERE s.resourceID = ?";
+    $stmt_shared_users = mysqli_prepare($con, $query_shared_users);
+    mysqli_stmt_bind_param($stmt_shared_users, "i", $row['resourceID']);
+    mysqli_stmt_execute($stmt_shared_users);
+    $result_shared_users = mysqli_stmt_get_result($stmt_shared_users);
+
+    // Store the shared users in an array
+    $shared_users = [];
+    while ($shared_user = mysqli_fetch_assoc($result_shared_users)) {
+        $shared_users[] = $shared_user['user_name'];
+    }
+    mysqli_stmt_close($stmt_shared_users);
+    ?>
+
+    <!-- Display shared users in the modal -->
+    <div class="modal fade" id="shareModal" tabindex="-1" aria-labelledby="shareModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="shareModalLabel">Users who shared this resource</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <?php if (!empty($shared_users)) : ?>
+                        <ul>
+                            <?php foreach ($shared_users as $user) : ?>
+                                <li><?php echo $user; ?></li>
+                            <?php endforeach; ?>
+                        </ul>
+                    <?php else : ?>
+                        <p>No users have shared this resource yet.</p>
+                    <?php endif; ?>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <!-- Additional modal buttons can be added here -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+
+
+
     <!-- ? Preloader Start -->
     <div id="preloader-active">
         <div class="preloader d-flex align-items-center justify-content-center">
@@ -241,9 +327,7 @@ if (isset($_GET['title'])) {
 
 
     <main>
-
         <div style="margin: 50px auto; text-align: left; font-family:'Poppins'; max-width: 700px; width: 90%;">
-
             <div style="font-family:'Poppins'; text-align: left;  font-size:1.2em; font-weight: normal;"><?php echo $row['content']; ?></div>
             <br>
             <div style="font-family:'Poppins'; font-size:1.2em; font-weight: normal;">From: <?php echo $user_name; ?></div>
@@ -253,18 +337,44 @@ if (isset($_GET['title'])) {
                 <form method="post" action="share.php">
 
                     <input type="hidden" name="resourceID" value="<?php echo $row['resourceID']; ?>">
-                    <input type="hidden" name="user_ID" value="<?php echo $row['user_ID']; ?>">
+                    <input type="hidden" name="user_ID" value="<?php echo $_SESSION['user_ID']; ?>">
 
                     <button type="submit" id="shareButton" name="shareButton" class="btn btn-primary">Share</button>
+                    <button id="viewSharesBtn" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#shareModal">Total Shares: <?php echo $share_count; ?></button>
+
                 </form>
 
             </div>
-
-
-
         </div>
-
     </main>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Your custom JavaScript -->
+    <script>
+        // JavaScript code for handling modal
+        document.addEventListener("DOMContentLoaded", function() {
+            var modal = document.getElementById('shareModal');
+            var btn = document.getElementById("viewSharesBtn");
+
+            btn.addEventListener("click", function() {
+                modal.style.display = "block";
+            });
+
+            // Close modal when close button is clicked
+            var closeBtn = modal.querySelector('.btn-close');
+            closeBtn.addEventListener("click", function() {
+                modal.style.display = "none";
+            });
+
+            // Close modal when clicking outside the modal
+            window.addEventListener("click", function(event) {
+                if (event.target == modal) {
+                    modal.style.display = "none";
+                }
+            });
+        });
+    </script>
+
 
     <style>
         .cases-img {

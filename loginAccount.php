@@ -18,6 +18,8 @@ if (isset($_POST['email_or_username']) && isset($_POST['password'])) {
             echo "Your account is suspended temporarily. Please contact us for assistance.";
         } else {
             $_SESSION['user_email'] = $row['user_email']; // Set session variable
+            $_SESSION['user_ID'] = $row['user_ID']; // Set user ID session variable
+
             echo "User login successful";
         }
     } else {
